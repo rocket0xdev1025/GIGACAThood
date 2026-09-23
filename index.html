@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muscular Cat ($GIGACAT)</title>
+  <meta name="description" content="Muscular Cat brings massive paws, alpha energy, and unstoppable meme power straight to the moon. Buy $GIGACAT with Arc USDC." />
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Luckiest+Guy&family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#04101c",
+            arc: {
+              50: "#eef5ff",
+              100: "#d7e7ff",
+              200: "#a9cbff",
+              300: "#7eb6ff",
+              400: "#4d97ff",
+              500: "#1f74f0",
+              600: "#1458c4",
+              700: "#0d3d86",
+              800: "#0a2748",
+              900: "#061422",
+            },
+          },
+          fontFamily: {
+            display: ["Luckiest Guy", "Impact", "sans-serif"],
+            comic: ["Bangers", "Impact", "sans-serif"],
+            marker: ["Permanent Marker", "cursive"],
+            sans: ["Comic Neue", "Comic Sans MS", "cursive"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { overflow-x: clip; }
+    body {
+      font-family: "Comic Neue", "Comic Sans MS", cursive;
+      background: #04101c;
+    }
+    ::selection { background: #1f74f0; color: #fff; }
+    .gym-bg {
+      background-image: url("gym-bg.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .halftone {
+      background-image: radial-gradient(rgba(126, 182, 255, 0.55) 1.3px, transparent 1.4px);
+      background-size: 11px 11px;
+    }
+    .poster {
+      font-family: "Luckiest Guy", Impact, sans-serif;
+      color: #fff;
+      letter-spacing: 0.01em;
+      line-height: 0.86;
+      -webkit-text-stroke: 3px #071525;
+      paint-order: stroke fill;
+      text-shadow: 5px 5px 0 #1f74f0, 8px 8px 0 #02070f;
+    }
+    .panel {
+      background: rgba(5, 16, 32, 0.88);
+      border: 4px solid #e8f1ff;
+      border-radius: 22px;
+      box-shadow: 8px 8px 0 #1458c4;
+    }
+    .tape {
+      font-family: "Permanent Marker", cursive;
+      background: #d7e7ff;
+      color: #04101c;
+      border: 3px solid #04101c;
+      box-shadow: 4px 4px 0 #1f74f0;
+    }
+    .btn-buy, .btn-ghost, .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      font-family: Bangers, Impact, sans-serif;
+      letter-spacing: 0.06em;
+      border: 3px solid #04101c;
+      border-radius: 16px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-buy {
+      background: #7eb6ff;
+      color: #04101c;
+      box-shadow: 5px 5px 0 #eef5ff;
+      transform: rotate(-2deg);
+    }
+    .btn-buy:hover { transform: rotate(1deg) translate(-2px, -2px); box-shadow: 8px 8px 0 #eef5ff; }
+    .btn-ghost {
+      background: #04182e;
+      color: #eef5ff;
+      box-shadow: 5px 5px 0 #1f74f0;
+      transform: rotate(2deg);
+    }
+    .btn-ghost:hover { transform: rotate(-1deg) translate(-2px, -2px); box-shadow: 8px 8px 0 #1f74f0; }
+    .btn-copy {
+      background: #1f74f0;
+      color: #fff;
+      box-shadow: 4px 4px 0 #04101c;
+    }
+    .btn-copy:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #04101c; }
+    .btn-buy:focus-visible, .btn-ghost:focus-visible, .btn-copy:focus-visible, a:focus-visible, button:focus-visible {
+      outline: 3px solid #7eb6ff;
+      outline-offset: 3px;
+    }
+    .bubble {
+      position: relative;
+      background: #eef5ff;
+      color: #04101c;
+      border: 4px solid #04101c;
+      border-radius: 26px;
+      box-shadow: 6px 6px 0 #1f74f0;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      right: 18%;
+      bottom: -18px;
+      border-width: 18px 14px 0 14px;
+      border-style: solid;
+      border-color: #04101c transparent transparent transparent;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      right: calc(18% + 4px);
+      bottom: -10px;
+      z-index: 1;
+      border-width: 12px 10px 0 10px;
+      border-style: solid;
+      border-color: #eef5ff transparent transparent transparent;
+    }
+    .spin-slow { animation: spin 22s linear infinite; }
+    .wiggle { animation: wiggle 3.4s ease-in-out infinite; }
+    .marquee-track { animation: marquee 22s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(3deg); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .spin-slow, .wiggle, .marquee-track { animation: none; }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-arc-50 antialiased">
+  <div class="gym-bg fixed inset-0 -z-30" aria-hidden="true"></div>
+  <div class="pointer-events-none fixed inset-0 -z-20 bg-[linear-gradient(180deg,rgba(4,16,28,0.55)_0%,rgba(4,16,28,0.78)_42%,rgba(2,8,16,0.94)_100%)]"></div>
+  <div class="halftone pointer-events-none fixed inset-0 -z-10 opacity-30" aria-hidden="true"></div>
+
+  <header class="sticky top-0 z-50 border-b-4 border-arc-100 bg-ink/90">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+      <a href="#top" class="flex min-w-0 items-center gap-3">
+        <img src="logo.png" alt="Muscular Cat logo" class="size-12 shrink-0 rounded-full border-4 border-arc-100 object-cover shadow-[4px_4px_0_#1f74f0]" />
+        <span class="min-w-0 leading-none">
+          <span class="block truncate font-display text-[1.7rem] text-white">MUSCULAR CAT</span>
+          <span class="block font-comic text-lg tracking-wide text-arc-300">$GIGACAT</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-6 font-comic text-2xl text-arc-100 md:flex" aria-label="Primary">
+        <a href="#lift" class="hover:-rotate-2 hover:text-white">The Lift</a>
+        <a href="#buy" class="hover:rotate-2 hover:text-white">How to Buy</a>
+        <a href="#chart" class="hover:-rotate-2 hover:text-white">Chart</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="https://x.com/muscularcatarc" target="_blank" rel="noopener noreferrer" aria-label="Muscular Cat on X" class="grid size-12 place-items-center overflow-hidden rounded-xl border-[3px] border-arc-100 bg-black shadow-[4px_4px_0_#1f74f0]">
+          <img src="x.png" alt="" class="size-6 object-contain" />
+        </a>
+        <a href="https://argus.world/token/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-buy hidden h-12 px-5 text-2xl sm:inline-flex">BUY NOW</a>
+        <button id="menuBtn" type="button" class="grid size-12 place-items-center rounded-xl border-[3px] border-arc-100 bg-arc-800 font-comic text-2xl md:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <svg id="iconOpen" viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="iconClose" viewBox="0 0 24 24" class="hidden size-6" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t-4 border-arc-100 bg-ink md:hidden">
+      <nav class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 font-comic text-3xl" aria-label="Mobile">
+        <a href="#lift" class="rounded-xl px-3 py-2 hover:bg-white/5">The Lift</a>
+        <a href="#buy" class="rounded-xl px-3 py-2 hover:bg-white/5">How to Buy</a>
+        <a href="#chart" class="rounded-xl px-3 py-2 hover:bg-white/5">Chart</a>
+        <a href="https://argus.world/token/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-buy mt-2 h-14 text-3xl">BUY NOW</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-6 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:pt-14">
+      <div class="relative">
+        <p class="tape inline-block -rotate-2 rounded-md px-3 py-1 text-sm">built on arc. no cardio.</p>
+        <h1 class="poster mt-4 text-[4.6rem] sm:text-8xl lg:text-[6.7rem]">
+          MUSCULAR<br />CAT
+        </h1>
+        <p class="mt-3 inline-block rotate-[-1deg] bg-arc-500 px-4 py-1 font-comic text-4xl text-white shadow-[5px_5px_0_#04101c] sm:text-5xl">$GIGACAT</p>
+        <div class="bubble mt-7 max-w-xl px-5 py-4">
+          <p class="font-sans text-xl font-bold leading-snug sm:text-2xl">
+            Muscular Cat brings massive paws, alpha energy, and unstoppable meme power straight to the moon.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="https://argus.world/token/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-buy h-14 px-7 text-3xl">BUY NOW</a>
+          <a href="https://dexscreener.com/arc/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-ghost h-14 px-7 text-3xl">CHART</a>
+        </div>
+        <div class="panel mt-8 flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:pl-5">
+          <div class="min-w-0 flex-1 px-2 sm:px-0">
+            <p class="font-marker text-sm text-arc-300">contract address</p>
+            <p class="truncate font-sans text-base font-bold text-white sm:text-lg">0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff</p>
+          </div>
+          <button type="button" class="copy-ca btn-copy h-12 shrink-0 px-5 text-2xl">
+            <span>COPY CA</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="relative mx-auto aspect-square w-full max-w-lg">
+        <svg class="spin-slow pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 200 200" aria-hidden="true">
+          <polygon fill="#1f74f0" stroke="#eef5ff" stroke-width="3" points="100,8 116,64 172,34 136,78 192,100 136,122 172,166 116,136 100,192 84,136 28,166 64,122 8,100 64,78 28,34 84,64" />
+        </svg>
+        <div class="absolute left-1/2 top-1/2 w-[68%] -translate-x-1/2 -translate-y-1/2">
+          <div class="wiggle">
+            <img src="logo.png" alt="Muscular Cat sitting like the final boss of leg day" class="aspect-square w-full rounded-full border-[6px] border-white object-cover shadow-[8px_8px_0_#1458c4]" />
+          </div>
+        </div>
+        <p class="tape absolute left-2 top-8 -rotate-6 rounded-md px-3 py-1 text-sm sm:text-base">massive paws</p>
+        <p class="tape absolute bottom-10 right-1 rotate-6 rounded-md px-3 py-1 text-sm sm:text-base">alpha energy</p>
+        <p class="tape absolute right-2 top-16 hidden rotate-3 rounded-md px-3 py-1 text-sm sm:block">to the moon</p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-4 pt-6">
+      <figure class="panel relative rotate-[-0.4deg] overflow-hidden p-2 sm:p-3">
+        <img src="banner.jpg" alt="GIGACAT banner featuring Muscular Cat" class="w-full rounded-xl border-[3px] border-arc-800 object-cover" />
+        <figcaption class="tape absolute left-6 top-6 -rotate-3 rounded-md px-3 py-1 text-sm">the champ</figcaption>
+      </figure>
+    </section>
+
+    <div class="relative mt-8 overflow-hidden border-y-4 border-arc-100 bg-arc-500 py-2">
+      <div class="marquee-track flex w-max gap-6 whitespace-nowrap font-comic text-3xl text-ink">
+        <span>MUSCULAR CAT</span><span>★</span>
+        <span>MASSIVE PAWS</span><span>★</span>
+        <span>ALPHA ENERGY</span><span>★</span>
+        <span>$GIGACAT</span><span>★</span>
+        <span>STRAIGHT TO THE MOON</span><span>★</span>
+        <span>ARC USDC</span><span>★</span>
+        <span>MUSCULAR CAT</span><span>★</span>
+        <span>MASSIVE PAWS</span><span>★</span>
+        <span>ALPHA ENERGY</span><span>★</span>
+        <span>$GIGACAT</span><span>★</span>
+        <span>STRAIGHT TO THE MOON</span><span>★</span>
+        <span>ARC USDC</span><span>★</span>
+      </div>
+    </div>
+
+    <section id="lift" class="scroll-mt-28 mx-auto max-w-6xl px-4 py-16">
+      <p class="font-marker text-lg text-arc-300">the standard</p>
+      <h2 class="poster mt-1 text-6xl sm:text-7xl">Three traits. Zero skips.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <article class="panel -rotate-1 p-5">
+          <p class="font-comic text-5xl text-arc-300">01</p>
+          <h3 class="mt-1 font-display text-4xl text-white">Massive paws</h3>
+          <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Planted. Thick. The floor files a complaint. Muscular Cat does not.</p>
+        </article>
+        <article class="panel rotate-1 p-5 md:mt-6">
+          <p class="font-comic text-5xl text-arc-300">02</p>
+          <h3 class="mt-1 font-display text-4xl text-white">Alpha energy</h3>
+          <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">No warm-up set. $GIGACAT walks in already spotted and already loud.</p>
+        </article>
+        <article class="panel -rotate-1 p-5">
+          <p class="font-comic text-5xl text-arc-300">03</p>
+          <h3 class="mt-1 font-display text-4xl text-white">Moon power</h3>
+          <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Unstoppable meme power, aimed straight up. Cooldown is liftoff.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="buy" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-16">
+      <div class="panel p-5 sm:p-8">
+        <div class="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+          <div>
+            <p class="font-marker text-lg text-arc-300">workout · 4 sets</p>
+            <h2 class="poster text-6xl sm:text-7xl">How to Buy</h2>
+            <p class="mt-3 max-w-xl font-sans text-xl font-bold text-arc-100">Buy $GIGACAT with Arc USDC. Four panels. One swap. Then the bar goes up.</p>
+          </div>
+          <a href="https://argus.world/token/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-buy h-14 px-7 text-3xl">BUY NOW</a>
+        </div>
+        <ol class="mt-8 grid gap-5 lg:grid-cols-4">
+          <li class="rounded-2xl border-4 border-arc-100 bg-arc-900/80 p-4 shadow-[6px_6px_0_#1f74f0] lg:-rotate-1">
+            <p class="inline-block rounded-full bg-arc-500 px-3 py-1 font-comic text-2xl text-ink">SET 01</p>
+            <h3 class="mt-3 font-display text-3xl text-white">Fund Arc USDC</h3>
+            <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Put USDC on Arc in a wallet you control. That stack is what buys $GIGACAT.</p>
+          </li>
+          <li class="rounded-2xl border-4 border-arc-100 bg-arc-900/80 p-4 shadow-[6px_6px_0_#1f74f0] lg:mt-4 lg:rotate-1">
+            <p class="inline-block rounded-full bg-arc-500 px-3 py-1 font-comic text-2xl text-ink">SET 02</p>
+            <h3 class="mt-3 font-display text-3xl text-white">Open Argus</h3>
+            <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Hit the $GIGACAT page on Argus and connect the wallet holding your Arc USDC.</p>
+          </li>
+          <li class="rounded-2xl border-4 border-arc-100 bg-arc-900/80 p-4 shadow-[6px_6px_0_#1f74f0] lg:-rotate-1">
+            <p class="inline-block rounded-full bg-arc-500 px-3 py-1 font-comic text-2xl text-ink">SET 03</p>
+            <h3 class="mt-3 font-display text-3xl text-white">Swap the set</h3>
+            <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Pay with Arc USDC. Receive $GIGACAT. Check the rate, then send it.</p>
+          </li>
+          <li class="rounded-2xl border-4 border-arc-100 bg-arc-900/80 p-4 shadow-[6px_6px_0_#1f74f0] lg:mt-4 lg:rotate-1">
+            <p class="inline-block rounded-full bg-arc-500 px-3 py-1 font-comic text-2xl text-ink">SET 04</p>
+            <h3 class="mt-3 font-display text-3xl text-white">Confirm the lift</h3>
+            <p class="mt-2 font-sans text-lg font-bold leading-snug text-arc-100">Approve in your wallet. $GIGACAT lands. Open the chart. Do not skip paw day.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="chart" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-16">
+      <div class="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="font-marker text-lg text-arc-300">dexscreener · arc</p>
+          <h2 class="poster text-6xl sm:text-7xl">The chart</h2>
+        </div>
+        <a href="https://dexscreener.com/arc/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-ghost h-12 px-6 text-2xl">CHART</a>
+      </div>
+      <div class="panel mb-4 flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:pl-5">
+        <div class="min-w-0 flex-1 px-2 sm:px-0">
+          <p class="font-marker text-sm text-arc-300">contract address</p>
+          <p class="truncate font-sans text-base font-bold text-white sm:text-lg">0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff</p>
+        </div>
+        <button type="button" class="copy-ca btn-copy h-12 shrink-0 px-5 text-2xl">
+          <span>COPY CA</span>
+        </button>
+      </div>
+      <div class="panel overflow-hidden p-2 sm:p-3">
+        <iframe
+          title="Dexscreener chart for GIGACAT on Arc"
+          src="https://dexscreener.com/arc/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=1&chartType=usd&interval=15"
+          class="h-[420px] w-full rounded-xl bg-ink sm:h-[640px]"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-20">
+      <div class="panel relative px-6 py-12 text-center sm:px-12">
+        <p class="font-marker text-xl text-arc-300">load the bar</p>
+        <h2 class="poster mx-auto mt-2 max-w-3xl text-6xl sm:text-8xl">Straight to the moon.</h2>
+        <p class="mx-auto mt-4 max-w-xl font-sans text-xl font-bold text-arc-100">Arc USDC in. $GIGACAT out. Massive paws on the bar.</p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="https://argus.world/token/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-buy h-14 w-full px-8 text-3xl sm:w-auto">BUY NOW</a>
+          <a href="https://dexscreener.com/arc/0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff" target="_blank" rel="noopener noreferrer" class="btn-ghost h-14 w-full px-8 text-3xl sm:w-auto">CHART</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-4 border-arc-100 bg-ink">
+    <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-8 sm:flex-row sm:items-center">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="" class="size-12 rounded-full border-4 border-arc-100 object-cover" />
+        <div class="leading-none">
+          <p class="font-display text-3xl text-white">MUSCULAR CAT</p>
+          <p class="font-comic text-xl text-arc-300">$GIGACAT · ARC</p>
+        </div>
+      </div>
+      <a href="https://x.com/muscularcatarc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 font-comic text-2xl text-arc-100 hover:text-white">
+        <img src="x.png" alt="" class="size-9 rounded-md border-2 border-white bg-black object-contain p-1.5" />
+        @muscularcatarc
+      </a>
+      <p class="max-w-xs font-sans text-base font-bold leading-snug text-arc-100">Meme coin. Not financial advice. Massive paws, alpha energy, straight to the moon.</p>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 translate-y-3 border-4 border-ink bg-arc-300 px-5 py-3 font-comic text-2xl text-ink opacity-0 shadow-[5px_5px_0_#04101c] transition duration-200">
+    CA copied. nice.
+  </div>
+
+  <script>
+    const CA = "0x5E5cB68773d3DE151de2B2a7A252F4516e81b9Ff";
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    async function copyCa(button) {
+      try {
+        await navigator.clipboard.writeText(CA);
+      } catch (err) {
+        const area = document.createElement("textarea");
+        area.value = CA;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+      }
+      const label = button.querySelector("span");
+      const previous = label.textContent;
+      label.textContent = "COPIED";
+      toast.classList.remove("opacity-0", "translate-y-3");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        label.textContent = previous;
+        toast.classList.add("opacity-0", "translate-y-3");
+      }, 1600);
+    }
+
+    document.querySelectorAll(".copy-ca").forEach((button) => {
+      button.addEventListener("click", () => copyCa(button));
+    });
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const iconOpen = document.getElementById("iconOpen");
+    const iconClose = document.getElementById("iconClose");
+
+    menuBtn.addEventListener("click", () => {
+      const open = mobileMenu.classList.toggle("hidden") === false;
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      iconOpen.classList.toggle("hidden", open);
+      iconClose.classList.toggle("hidden", !open);
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open menu");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+      });
+    });
+  </script>
+</body>
+</html>
